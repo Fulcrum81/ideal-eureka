@@ -2,6 +2,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
         method();
+        System.out.println("We have a conflict");
     }
 
     public static void method() {
