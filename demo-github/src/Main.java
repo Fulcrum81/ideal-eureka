@@ -1,12 +1,67 @@
+import geometry.Circle;
+import geometry.GeometricShape;
+import geometry.Rectangle;
+import geometry.Square;
+import goods.dolls.Doll;
+import goods.dolls.DollHead;
+import goods.dolls.DollOutfit;
+
 import java.util.Scanner;
 
 public class Main {
 
-    static String mySurname = "Zubovich";
+    public static String mySurname = "Zubovich";
 
+    public static final double PI = 3.1415923;
 
     public static void main(String[] args) {
-        sumOfNumbers();
+
+        Circle circle12 = new Circle(12);
+        Circle circle35 = new Circle(35);
+        Square square = new Square(10);
+        Rectangle rectangle = new Rectangle(15, 98);
+
+        addUpAreas(circle12, circle35, square, rectangle);
+
+
+//        createDolls();
+//
+//        String myOldString = "old str";
+//        MyString myInitialString = new MyString("old str");
+//
+//        System.out.println(myInitialString.value);
+//
+//        Util.changeString(myInitialString);
+//
+//        System.out.println(myInitialString.value);
+//
+//
+////        String myString = "This is my string";
+////
+//////        int sumOfTenAndFive = Util.calculateSum(1);
+////
+////        String.format(";skjghsljdgh %d", 10);
+////
+//        final RubberDuck yellowDuckSizeS = new RubberDuck("yellow", "S", 4.99);
+//        //
+//        goods.ducks.RubberDuck greenDuck = new goods.ducks.RubberDuck("green", "M");
+//
+//        yellowDuckSizeS.price = 5.99;
+//
+//        System.out.println(yellowDuckSizeS.getColor());
+//
+//        System.out.println(yellowDuckSizeS.getColor());
+//
+//        yellowDuckSizeS.printInfo();
+//
+//        yellowDuckSizeS.addToCart(4);
+//
+//        Util.sayHello("Vadim");
+//        Util.sayHello("Vasili");
+//        Util.sayHello("Aleksandra");
+
+
+//        sumOfNumbers();
 //        nextIntIssue();
 //        ifClause();
 //        ternary();
@@ -132,5 +187,28 @@ public class Main {
         }
 
         System.out.printf("Sum of numbers from 0 to %d is %d", userInput, sum);
+    }
+
+    public static void createDolls() {
+        DollHead headForLucy = new DollHead("Blonde", "Blue", false);
+        DollOutfit outfitForLucy = new DollOutfit("Dress", "Red");
+        Doll lucy = new Doll(headForLucy, outfitForLucy, "White", "Lucy", false, 15);
+
+        System.out.println(lucy.getHead().getHairColor());
+
+        Doll debbie = new Doll("Black", "Brown", false, "suit", "Blue",
+                "Black", "Debbie", false, 19.99);
+
+        System.out.println(debbie.getPrice());
+    }
+
+    public static void addUpAreas(GeometricShape... shapes) {
+        double sum = 0;
+
+        for(GeometricShape shape : shapes) {
+            sum += shape.getArea();
+        }
+
+        System.out.println("Area of all the indicated circles is: " + sum);
     }
 }
