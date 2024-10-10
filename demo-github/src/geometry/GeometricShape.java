@@ -1,6 +1,12 @@
 package geometry;
 
-public interface GeometricShape {
+public abstract class GeometricShape {
 
-    double getArea();
+    protected String shapeType;
+
+    public abstract double getArea();
+
+    public void printShapeInfo() {
+        System.out.println("Hi, I am a " + shapeType);
+    }
 }

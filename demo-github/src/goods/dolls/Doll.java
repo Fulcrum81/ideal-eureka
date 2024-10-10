@@ -19,7 +19,7 @@ public class Doll extends GoodsItem {
         this.price = price;
     }
 
-    public Doll(String hairColor, String eyeColor, boolean hasFreckles, String outfitType, String outfitColor,
+    public Doll(String hairColor, EyeColor eyeColor, boolean hasFreckles, String outfitType, String outfitColor,
                 String skinColor, String name, boolean isCollectible, double price) {
 
         this.head = new DollHead(hairColor, eyeColor, hasFreckles);
@@ -40,5 +40,9 @@ public class Doll extends GoodsItem {
 
     public String getName() {
         return name;
+    }
+
+    public String getDollInfo() {
+        return "My name is " + name + ", My eye color is " + head.getEyeColor().rgbColor;
     }
 }

@@ -1,6 +1,6 @@
 package geometry;
 
-public class Rectangle implements GeometricShape {
+public class Rectangle extends GeometricShape {
 
     private double sideA;
     private double sideB;
@@ -8,6 +8,7 @@ public class Rectangle implements GeometricShape {
     public Rectangle(double sideA, double sideB) {
         this.sideA = sideA;
         this.sideB = sideB;
+        shapeType = "rectangle";
     }
 
     public double getArea() {

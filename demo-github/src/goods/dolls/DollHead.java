@@ -2,10 +2,10 @@ package goods.dolls;
 
 public class DollHead {
     private String hairColor;
-    private String eyeColor;
+    private EyeColor eyeColor;
     private boolean hasFreckles;
 
-    public DollHead(String hairColor, String eyeColor, boolean hasFreckles) {
+    public DollHead(String hairColor, EyeColor eyeColor, boolean hasFreckles) {
         this.hairColor = hairColor;
         this.eyeColor = eyeColor;
         this.hasFreckles = hasFreckles;
@@ -15,7 +15,7 @@ public class DollHead {
         return "My hair color is" + hairColor;
     }
 
-    public String getEyeColor() {
+    public EyeColor getEyeColor() {
         return eyeColor;
     }
 

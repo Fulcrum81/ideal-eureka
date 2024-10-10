@@ -1,3 +1,4 @@
+import enums.Browser;
 import geometry.Circle;
 import geometry.GeometricShape;
 import geometry.Rectangle;
@@ -5,7 +6,15 @@ import geometry.Square;
 import goods.dolls.Doll;
 import goods.dolls.DollHead;
 import goods.dolls.DollOutfit;
+import goods.dolls.EyeColor;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -16,12 +25,30 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Circle circle12 = new Circle(12);
-        Circle circle35 = new Circle(35);
-        Square square = new Square(10);
-        Rectangle rectangle = new Rectangle(15, 98);
-
-        addUpAreas(circle12, circle35, square, rectangle);
+//        writeToFile();
+        try {
+            readFromFile();
+        } catch (FileNotFoundException e) {
+            System.out.println("Sorry, no such file");
+        }
+        //        System.out.println("Starting program");
+//
+//        try {
+//            int x = Integer.parseInt("10");
+//            int a = 10 / 0;
+//            System.out.println(a);
+//        } catch (ArithmeticException e) {
+//            System.out.println("Cannot divide by zero ");
+//        } catch (NumberFormatException e) {
+//            System.out.println("Cannot cast string to int " + e.getMessage());
+//        }
+//
+//        Circle circle12 = new Circle(12);
+//        Circle circle35 = new Circle(35);
+//        Square square = new Square(10);
+//        Rectangle rectangle = new Rectangle(15, 98);
+//
+//        addUpAreas(circle12, circle35, square, rectangle);
 
 
 //        createDolls();
@@ -155,7 +182,7 @@ public class Main {
         String userInput = "";
         Scanner scanner = new Scanner(System.in);
 
-         while (userInput.isEmpty()) {
+        while (userInput.isEmpty()) {
             System.out.println("Please enter something");
             userInput = scanner.nextLine();
         }
@@ -182,7 +209,7 @@ public class Main {
         int userInput = scanner.nextInt();
         int sum = 0;
 
-        for(int i = 0; i <= userInput; i++) {
+        for (int i = 0; i <= userInput; i++) {
             sum += i;
         }
 
@@ -190,25 +217,87 @@ public class Main {
     }
 
     public static void createDolls() {
-        DollHead headForLucy = new DollHead("Blonde", "Blue", false);
+        DollHead headForLucy = new DollHead("Blonde", EyeColor.GREY, false);
         DollOutfit outfitForLucy = new DollOutfit("Dress", "Red");
         Doll lucy = new Doll(headForLucy, outfitForLucy, "White", "Lucy", false, 15);
 
-        System.out.println(lucy.getHead().getHairColor());
+        System.out.println(lucy.getDollInfo());
 
-        Doll debbie = new Doll("Black", "Brown", false, "suit", "Blue",
+        Doll debbie = new Doll("Black", EyeColor.BLUE, false, "suit", "Blue",
                 "Black", "Debbie", false, 19.99);
 
-        System.out.println(debbie.getPrice());
+        System.out.println(debbie.getDollInfo());
     }
 
     public static void addUpAreas(GeometricShape... shapes) {
         double sum = 0;
 
-        for(GeometricShape shape : shapes) {
+        for (GeometricShape shape : shapes) {
             sum += shape.getArea();
+            shape.printShapeInfo();
         }
 
         System.out.println("Area of all the indicated circles is: " + sum);
+    }
+
+    public static void enumDemo() {
+        Browser browser = Browser.firefox;
+
+        switch (browser) {
+            case chrome -> System.out.println("You've chosen Chrome");
+            case firefox -> System.out.println("You've chosen Firefox");
+            case safari -> System.out.println("You've chosen Safari");
+            case edge -> System.out.println("You've chosen Edge");
+            case ie -> System.out.println("You've chosen Internet Explorer");
+        }
+    }
+
+    public static void collections() {
+
+        ArrayList<String> names = new ArrayList<>();
+
+        names.add("Vadim");
+        names.add("Jake");
+        names.add("Jill");
+        names.add("John");
+        names.add(2, "Jackie");
+        names.add("Eugene");
+
+
+        List<String> namesThatStartWithJ = names.stream().filter(name -> name.startsWith("J"))
+                .sorted().toList();
+
+        namesThatStartWithJ.forEach(System.out::println);
+        System.out.println("==================================");
+        names.forEach(System.out::println);
+
+
+//        for(String name : names) {
+//            System.out.println(name);
+//        }
+    }
+
+    public static void writeToFile() {
+        try {
+            FileWriter file = new FileWriter("D:\\my_new_file.txt", true);
+            file.write("Hello, again this is my file data\n");
+            file.write("My file is appended\n");
+            file.close();
+        } catch (IOException e) {
+            System.out.println("Sorry, cannot write to file. Full error message: " + e.getMessage());
+        }
+
+    }
+
+    public static void readFromFile() throws FileNotFoundException {
+        File file = new File("D:\\my_new_file.txt");
+        Scanner fileScanner = new Scanner(file);
+        ArrayList<String> dataFromFile = new ArrayList<>();
+
+        while (fileScanner.hasNext()) {
+            dataFromFile.add(fileScanner.nextLine());
+        }
+
+        dataFromFile.forEach(System.out::println);
     }
 }
